@@ -1,0 +1,43 @@
+{
+    "name": "@btc-vision/wbtc",
+    "version": "1.0.0",
+    "description": "Wrapped Bitcoin",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest",
+        "build": "asc src/index.ts --target release --measure -Ospeed --noAssert --optimizeLevel 3 --shrinkLevel 2 --converge --disable mutable-globals,sign-extension,nontrapping-f2i,bulk-memory --runtime stub --memoryBase 0 --lowMemoryLimit --uncheckedBehavior never --initialMemory 16 --maximumMemory 16 --exportRuntime"
+    },
+    "author": "BlobMaster41",
+    "license": "LICENSE.MD",
+    "devDependencies": {
+        "@jest/types": "^29.6.3",
+        "@types/jest": "^29.5.12",
+        "@types/node": "^20.11.30",
+        "assemblyscript": "^0.27.25",
+        "jest": "^29.7.0",
+        "prettier": "^3.2.5"
+    },
+    "keywords": [
+        "bitcoin",
+        "smart",
+        "contract",
+        "runtime",
+        "opnet",
+        "OP_NET",
+        "wrapped bitcoin",
+        "wbtc"
+    ],
+    "homepage": "https://opnet.org",
+    "type": "module",
+    "dependencies": {
+        "@assemblyscript/loader": "^0.27.25",
+        "@babel/preset-env": "^7.24.3",
+        "@btc-vision/bsi-binary": "github:btc-vision/bsi-binary",
+        "@btc-vision/btc-runtime": "^1.0.11",
+        "as-bignum": "^0.3.0",
+        "babel-plugin-transform-import-meta": "^2.2.1",
+        "gulplog": "^2.2.0",
+        "ts-jest": "^29.1.2",
+        "ts-node": "^10.9.2"
+    }
+}
