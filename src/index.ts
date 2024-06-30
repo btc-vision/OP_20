@@ -1,5 +1,5 @@
 import { ABIRegistry, Blockchain } from '@btc-vision/btc-runtime/runtime';
-import { Moto } from './contracts/Moto';
+import { MyToken } from './contracts/MyToken';
 
 export function defineSelectors(): void {
     /** OP_NET */
@@ -26,7 +26,7 @@ export function defineSelectors(): void {
     ABIRegistry.defineMethodSelector('airdrop', true);
 }
 
-Blockchain.contract = () => new Moto();
+Blockchain.contract = () => new MyToken();
 
 // VERY IMPORTANT
 export * from '@btc-vision/btc-runtime/runtime/exports';

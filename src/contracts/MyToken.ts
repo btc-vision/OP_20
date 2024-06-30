@@ -1,4 +1,4 @@
-import { u256 } from 'as-bignum/assembly';
+import { u128, u256 } from 'as-bignum/assembly';
 import {
     Address,
     BytesWriter,
@@ -10,9 +10,9 @@ import {
 } from '@btc-vision/btc-runtime/runtime';
 
 @final
-export class Moto extends OP_20 {
+export class MyToken extends OP_20 {
     constructor() {
-        super(u256.fromU64(2100000000000000), 8, 'Moto', 'MOTO');
+        super(u128.fromString('100000000000000000000000000').toU256(), 18, 'MyToken', 'TOKEN');
     }
 
     public override callMethod(method: Selector, calldata: Calldata): BytesWriter {

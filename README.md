@@ -1,4 +1,4 @@
-# Moto
+# OP_20 Template Project
 
 ![Bitcoin](https://img.shields.io/badge/Bitcoin-000?style=for-the-badge&logo=bitcoin&logoColor=white)
 ![AssemblyScript](https://img.shields.io/badge/assembly%20script-%23000000.svg?style=for-the-badge&logo=assemblyscript&logoColor=white)
@@ -11,7 +11,7 @@
 
 ## Introduction
 
-Moto token
+This repository contains a template project for creating OP_20 contracts on the Bitcoin blockchain. The project is written in AssemblyScript, a TypeScript-like language that compiles to WebAssembly.
 
 ## Getting Started
 
@@ -24,11 +24,11 @@ Moto token
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/btc-vision/moto.git
+   git clone https://github.com/btc-vision/OP_20.git
    ```
 2. Navigate to the repository directory:
    ```bash
-   cd moto
+   cd OP_20
    ```
 3. Install the necessary dependencies:
    ```bash
@@ -37,7 +37,7 @@ Moto token
 
 ## Building the Contract
 
-To build the Moto smart contract, use the following command:
+To build the MyToken smart contract, use the following command:
 
 ```bash
 npm run build
