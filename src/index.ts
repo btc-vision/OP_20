@@ -22,7 +22,7 @@ export function defineSelectors(): void {
     ABIRegistry.defineGetterSelector('totalSupply', false);
     ABIRegistry.defineGetterSelector('maxSupply', false);
 
-    /** Moto */
+    /** Optional */
     ABIRegistry.defineMethodSelector('airdrop', true);
 }
 
