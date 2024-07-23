@@ -33,7 +33,7 @@
         "@assemblyscript/loader": "^0.27.25",
         "@babel/preset-env": "^7.24.3",
         "@btc-vision/bsi-binary": "^1.0.25",
-        "@btc-vision/btc-runtime": "^1.0.17",
+        "@btc-vision/btc-runtime": "^1.0.19",
         "as-bignum": "^0.3.0",
         "babel-plugin-transform-import-meta": "^2.2.1",
         "gulplog": "^2.2.0",
