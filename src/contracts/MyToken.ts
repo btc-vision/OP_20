@@ -12,7 +12,12 @@ import {
 @final
 export class MyToken extends OP_20 {
     constructor() {
-        super(u128.fromString('100000000000000000000000000').toU256(), 18, 'MyToken', 'TOKEN');
+        const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256();
+        const decimals: u8 = 18;
+        const name: string = 'MyToken';
+        const symbol: string = 'TOKEN';
+
+        super(maxSupply, decimals, name, symbol);
     }
 
     public override callMethod(method: Selector, calldata: Calldata): BytesWriter {
