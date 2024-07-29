@@ -57,16 +57,22 @@
 - Drag your `.wasm` file or click to choose it.
 - Send your transaction to deploy the token contract onto Bitcoin with OP_NET.
 
-### 7 (optional). Retrieve Contract Address Manually
+### 7. Mint Token Supply
 
-- After the deploy transaction has confirmed, go to:
-  ```
-  https://testnet.opnet.org/api/v1/transaction/by-hash?hash=[the_tx_hash_of_your_deploy]
-  ```
-- Click "pretty print" and search for `contractAddress` near the top.
-- Copy the contract address and go to "Import Tokens" in the OP_WALLET.
-- Paste the contract address to see the tokens in your wallet.
+- After deploying the token, you will need to mint the supply you wish to have.
+- Open your OP_WALLET, click the token in your balance that you just deployed, and select the "mint" option.
+- Click "max" or type in the amount of tokens you wish to mint, and then send the transaction.
+
+### 8. Add Liquidity on Motoswap
+
+- Copy the token address from your OP_WALLET.
+- Go to [Motoswap](https://motoswap.org/pool) and paste your token address into the top or bottom box.
+- Enter the amount of tokens you wish to add to the liquidity pool.
+- Select the other side of the liquidity pair (e.g., WBTC) and enter the amount of tokens you wish to add.
+- Click "Add Liquidity".
+
+Your token is now tradeable on Motoswap!
 
 ## Congrats!
 
-You have successfully deployed a token contract on the Bitcoin blockchain using OP_NET. You can now go to Motoswap.org in order to add liquidity and begin swapping your OP_20 token on Bitcoin!
+You have successfully deployed and minted your OP_20 token on the Bitcoin blockchain using OP_NET, and added liquidity to make it tradeable on Motoswap.
