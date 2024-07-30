@@ -17,7 +17,7 @@
 
 ### 1. Install OP_WALLET Chrome Extension
 
-- Download and install the [OP_WALLET Chrome Extension](#).
+- Download and install the [OP_WALLET Chrome Extension](https://github.com/btc-vision/opwallet/blob/master/README.md).
 - Set up the wallet and switch the network to Testnet.
 
 ### 2. Obtain Testnet Bitcoin
