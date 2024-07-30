@@ -11,7 +11,7 @@
 
 ## Prerequisites
 
-- Ensure you have [Node.js](https://nodejs.org/) and [npm](https://www.npmjs.com/) installed on your computer.
+- Ensure you have [Node.js](https://nodejs.org/en/download/prebuilt-installer) and [npm](https://www.npmjs.com/) installed on your computer.
 
 ## Step-by-Step Guide
 
@@ -34,12 +34,15 @@
 ### 4. Edit Token Details
 
 - Open the `OP_20` template repository in your IDE or text editor.
-- Navigate to `src/contracts/MyToken.ts` and find line 15:
+- Navigate to `src/contracts/MyToken.ts` and find lines 15-18:
   ```typescript
-  super(u128.fromString('100000000000000000000000000').toU256(), 18, 'MyToken', 'TOKEN');
+        const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256();
+        const decimals: u8 = 18;
+        const name: string = 'Testnet';
+        const symbol: string = 'TEST';
   ```
 - Modify the number for the total supply and the amount of decimals (e.g., for 18 decimals, add 18 zeros).
-- Change the name and ticker of the token as desired.
+- Change the name and symbol of the token as desired.
 
 ### 5. Install Dependencies and Build
 
