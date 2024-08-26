@@ -1,6 +1,6 @@
 {
     "name": "@btc-vision/wbtc",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "description": "Wrapped Bitcoin",
     "main": "index.js",
     "scripts": {
@@ -29,7 +29,7 @@
     "dependencies": {
         "@assemblyscript/loader": "^0.27.25",
         "@btc-vision/bsi-binary": "^1.0.35",
-        "@btc-vision/btc-runtime": "^1.0.29",
+        "@btc-vision/btc-runtime": "^1.1.1",
         "as-bignum": "^0.3.0",
         "gulplog": "^2.2.0",
         "ts-node": "^10.9.2"
