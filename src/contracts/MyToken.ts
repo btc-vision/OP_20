@@ -6,14 +6,20 @@ import {
     encodeSelector,
     Map,
     OP20InitParameters,
+    OP_20,
     Selector,
 } from '@btc-vision/btc-runtime/runtime';
 import { DeployableOP_20 } from '@btc-vision/btc-runtime/runtime/contracts/DeployableOP_20';
 
 @final
-export class MyToken extends DeployableOP_20 {
+export class MyToken extends OP_20 { // Could be DeployableOP_20 (if in 1.1.0, enabled the 2024-08-28)
     constructor() {
-        super();
+        const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256(); // Your max supply.
+        const decimals: u8 = 18; // Your decimals.
+        const name: string = 'MyToken'; // Your token name.
+        const symbol: string = 'TOKEN'; // Your token symbol.
+
+        super(maxSupply, decimals, name, symbol);
 
         // DO NOT USE TO DEFINE VARIABLE THAT ARE NOT CONSTANT. SEE "solidityLikeConstructor" BELOW.
     }
@@ -23,12 +29,12 @@ export class MyToken extends DeployableOP_20 {
         if (!this.isInstantiated) {
             super.onInstantiated(); // IMPORTANT.
 
-            const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256(); // Your max supply.
-            const decimals: u8 = 18; // Your decimals.
-            const name: string = 'MyToken'; // Your token name.
-            const symbol: string = 'TOKEN'; // Your token symbol.
+            //const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256(); // Your max supply.
+            //const decimals: u8 = 18; // Your decimals.
+            //const name: string = 'MyToken'; // Your token name.
+            //const symbol: string = 'TOKEN'; // Your token symbol.
 
-            this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
+            //this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
 
             // Add your logic here. Eg, minting the initial supply:
             // this._mint(Blockchain.origin, maxSupply);
