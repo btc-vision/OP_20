@@ -24,9 +24,20 @@ export function defineSelectors(): void {
 
     /** Optional */
     ABIRegistry.defineMethodSelector('airdrop', true);
+
+    // Define your selectors here.
 }
 
-Blockchain.contract = () => new MyToken();
+// DO NOT TOUCH TO THIS.
+Blockchain.contract = () => {
+    // ONLY CHANGE THE CONTRACT CLASS NAME.
+    const contract = new MyToken();
+    contract.onInstantiated();
+
+    // DO NOT ADD CUSTOM LOGIC HERE.
+
+    return contract;
+}
 
 // VERY IMPORTANT
 export * from '@btc-vision/btc-runtime/runtime/exports';

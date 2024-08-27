@@ -1,23 +1,38 @@
 import { u128, u256 } from 'as-bignum/assembly';
 import {
-    Address,
+    Address, Blockchain,
     BytesWriter,
     Calldata,
     encodeSelector,
     Map,
-    OP_20,
+    OP20InitParameters,
     Selector,
 } from '@btc-vision/btc-runtime/runtime';
+import { DeployableOP_20 } from '@btc-vision/btc-runtime/runtime/contracts/DeployableOP_20';
 
 @final
-export class MyToken extends OP_20 {
+export class MyToken extends DeployableOP_20 {
     constructor() {
-        const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256();
-        const decimals: u8 = 18;
-        const name: string = 'MyToken';
-        const symbol: string = 'TOKEN';
+        super();
 
-        super(maxSupply, decimals, name, symbol);
+        // DO NOT USE TO DEFINE VARIABLE THAT ARE NOT CONSTANT. SEE "solidityLikeConstructor" BELOW.
+    }
+
+    // "solidityLikeConstructor" This is a solidity-like constructor. This method will only run once.
+    public onInstantiated(): void {
+        if (!this.isInstantiated) {
+            super.onInstantiated(); // IMPORTANT.
+
+            const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256(); // Your max supply.
+            const decimals: u8 = 18; // Your decimals.
+            const name: string = 'MyToken'; // Your token name.
+            const symbol: string = 'TOKEN'; // Your token symbol.
+
+            this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
+
+            // Add your logic here. Eg, minting the initial supply:
+            // this._mint(Blockchain.origin, maxSupply);
+        }
     }
 
     public override callMethod(method: Selector, calldata: Calldata): BytesWriter {
