@@ -10,22 +10,23 @@
 
 ## 2. Grant of License
 
-This License permits User to view the Software via the repository hosting the Software ("Hosting Service"). Except as
-provided in this Section, no other use of the Software is permitted. The User may not modify, copy, reproduce,
-republish, upload, post, transmit, or distribute the Software in any way.
+This License permits User to view the Software via the repository hosting the
+Software ("Hosting Service"). Except as provided in this Section, no other use
+of the Software is permitted. The User may not copy, republish, or distribute the Software in any way.
 
 ## 3. Restrictions
 
-- **Modification and Distribution**: User is prohibited from modifying, merging, distributing, sublicensing, and/or
-  selling copies of the Software.
 - **Commercial Use**: User is prohibited from using the Software for any commercial purposes.
-- **Reverse Engineering**: User is prohibited from reverse engineering, decompiling, or disassembling the Software.
+- **Claim of Ownership**: User acknowledges that the Software is the property of the Licensor and that they do not have
+  any ownership rights to the Software.
 
 ## 4. Termination
 
 This License is effective until terminated by the Licensor. It will terminate immediately without notice from the
 Licensor if User fails to comply with any provision of this License. Upon termination, User must destroy all copies of
-the Software.
+the Software. This License will also terminate if the User attempts to circumvent the restrictions set forth in Section
+
+3.
 
 ## 5. Copyright Notice
 
