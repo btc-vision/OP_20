@@ -1,18 +1,17 @@
 import { u128, u256 } from 'as-bignum/assembly';
 import {
-    Address, Blockchain,
+    Address,
     BytesWriter,
     Calldata,
     encodeSelector,
     Map,
-    OP20InitParameters,
     OP_20,
     Selector,
 } from '@btc-vision/btc-runtime/runtime';
-import { DeployableOP_20 } from '@btc-vision/btc-runtime/runtime/contracts/DeployableOP_20';
 
 @final
-export class MyToken extends OP_20 { // Could be DeployableOP_20 (if in 1.1.0, enabled on 2024-08-28)
+export class MyToken extends OP_20 {
+    // Could be DeployableOP_20 (if in 1.1.0, enabled on 2024-08-28)
     constructor() {
         const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256(); // Your max supply.
         const decimals: u8 = 18; // Your decimals.
