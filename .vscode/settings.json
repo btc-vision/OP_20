@@ -1,0 +1,10 @@
+{
+    "eslint.validate": ["javascript", "typescript"],
+    "prettier.useEditorConfig": false,
+    "prettier.useTabs": false,
+    "prettier.configPath": ".prettierrc.json",
+    "prettier.requireConfig": true,
+    "prettier.tabWidth": 4,
+    "prettier.singleQuote": true,
+    "editor.formatOnSave": true,
+}
