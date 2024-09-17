@@ -28,7 +28,7 @@
     "type": "module",
     "dependencies": {
         "@assemblyscript/loader": "^0.27.25",
-        "@btc-vision/btc-runtime": "file:../btc-runtime",
+        "@btc-vision/btc-runtime": "^1.1.7",
         "@eslint/js": "^9.10.0",
         "as-bignum": "^0.3.0",
         "gulplog": "^2.2.0",
