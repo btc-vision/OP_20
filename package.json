@@ -1,10 +1,9 @@
 {
-    "name": "@btc-vision/wbtc",
+    "name": "@btc-vision/op20",
     "version": "0.0.1",
-    "description": "Wrapped Bitcoin",
+    "description": "OP_20 example smart contract",
     "main": "index.js",
     "scripts": {
-        "test": "jest",
         "build": "asc src/index.ts --target release --measure -Ospeed --noAssert --optimizeLevel 3 --shrinkLevel 2 --converge --disable mutable-globals,sign-extension,nontrapping-f2i,bulk-memory --runtime stub --memoryBase 0 --lowMemoryLimit --uncheckedBehavior never --initialMemory 1 --maximumMemory 512"
     },
     "author": "BlobMaster41",
