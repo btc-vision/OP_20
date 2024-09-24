@@ -20,7 +20,7 @@ export function defineSelectors(): void {
     ABIRegistry.defineGetterSelector('name', false);
     ABIRegistry.defineGetterSelector('symbol', false);
     ABIRegistry.defineGetterSelector('totalSupply', false);
-    ABIRegistry.defineGetterSelector('maxSupply', false);
+    ABIRegistry.defineGetterSelector('maximumSupply', false);
 
     /** Optional */
     ABIRegistry.defineMethodSelector('airdrop', true);
