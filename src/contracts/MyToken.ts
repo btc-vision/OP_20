@@ -1,4 +1,3 @@
-import { u128, u256 } from 'as-bignum/assembly';
 import {
     Address,
     BytesWriter,
@@ -8,6 +7,7 @@ import {
     OP_20,
     Selector,
 } from '@btc-vision/btc-runtime/runtime';
+import { u128, u256 } from 'as-bignum/assembly';
 
 @final
 export class MyToken extends OP_20 {
@@ -60,7 +60,7 @@ export class MyToken extends OP_20 {
             this._mint(address, amount);
         }
 
-        const writer: BytesWriter = new BytesWriter();
+        const writer: BytesWriter = new BytesWriter(1);
         writer.writeBoolean(true);
 
         return writer;

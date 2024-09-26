@@ -143,3 +143,4 @@ fixdb/
 
 build
 debug
+yarn.lock

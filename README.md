@@ -11,25 +11,25 @@
 
 ## Prerequisites
 
-- Ensure you have [Node.js](https://nodejs.org/en/download/prebuilt-installer) and [npm](https://www.npmjs.com/) installed on your computer.
+-   Ensure you have [Node.js](https://nodejs.org/en/download/prebuilt-installer) and [npm](https://www.npmjs.com/) installed on your computer.
 
 ## Step-by-Step Guide
 
 ### 1. Install OP_WALLET Chrome Extension
 
-- Download and install the [OP_WALLET Chrome Extension](https://opnet.org).
-- Set up the wallet and switch the network to Regtest.
+-   Download and install the [OP_WALLET Chrome Extension](https://opnet.org).
+-   Set up the wallet and switch the network to Regtest.
 
 ### 2. Obtain Testnet Bitcoin
 
-- If you don't have any Regtest Bitcoin, get some from [this faucet](https://faucet.opnet.org/).
+-   If you don't have any Regtest Bitcoin, get some from [this faucet](https://faucet.opnet.org/).
 
 ### 3. Download OP_20 Template Contract
 
-- Clone the [OP_20 template contract](https://github.com/btc-vision/OP_20) repository:
-  ```sh
-  git clone https://github.com/btc-vision/OP_20.git
-  ```
+-   Clone the [OP_20 template contract](https://github.com/btc-vision/OP_20) repository:
+    ```sh
+    git clone https://github.com/btc-vision/OP_20.git
+    ```
 
 ### 4. Edit Token Details
 
@@ -40,38 +40,42 @@ This step is crucial for customizing your OP_20 token. You will need to adjust s
 Here’s what each property means and how you can customize it:
 
 1. **`maxSupply`**:
-  - This defines the total supply of your token.
-  - It’s a `u256` value representing the maximum number of tokens that will ever exist.
-  - The number should include the full number of decimals.
-  - **Example**: If you want a total supply of 1,000,000 tokens with 18 decimals, the value should be `1000000000000000000000000`.
 
-   ```typescript
-   const maxSupply: u256 = u128.fromString('1000000000000000000000000').toU256(); // 1,000,000 tokens with 18 decimals
-   ```
+-   This defines the total supply of your token.
+-   It’s a `u256` value representing the maximum number of tokens that will ever exist.
+-   The number should include the full number of decimals.
+-   **Example**: If you want a total supply of 1,000,000 tokens with 18 decimals, the value should be `1000000000000000000000000`.
+
+```typescript
+const maxSupply: u256 = u128.fromString('1000000000000000000000000').toU256(); // 1,000,000 tokens with 18 decimals
+```
 
 2. **`decimals`**:
-  - This property defines how divisible your token is.
-  - A value of `18` means the token can be divided down to 18 decimal places, similar to how Ethereum handles its tokens.
 
-   ```typescript
-   const decimals: u8 = 18; // Your decimals
-   ```
+-   This property defines how divisible your token is.
+-   A value of `18` means the token can be divided down to 18 decimal places, similar to how Ethereum handles its tokens.
+
+```typescript
+const decimals: u8 = 18; // Your decimals
+```
 
 3. **`name`**:
-  - The `name` is a string representing the full name of your token.
-  - This will be displayed in wallets and exchanges.
 
-   ```typescript
-   const name: string = 'YourTokenName'; // e.g., 'My Custom Token'
-   ```
+-   The `name` is a string representing the full name of your token.
+-   This will be displayed in wallets and exchanges.
+
+```typescript
+const name: string = 'YourTokenName'; // e.g., 'My Custom Token'
+```
 
 4. **`symbol`**:
-  - The `symbol` is a short string representing the ticker symbol of your token.
-  - Similar to how "BTC" represents Bitcoin.
 
-   ```typescript
-   const symbol: string = 'SYM'; // e.g., 'MYT'
-   ```
+-   The `symbol` is a short string representing the ticker symbol of your token.
+-   Similar to how "BTC" represents Bitcoin.
+
+```typescript
+const symbol: string = 'SYM'; // e.g., 'MYT'
+```
 
 #### **Modifying the Contract Code**
 
@@ -99,36 +103,36 @@ const symbol: string = 'TTK'; // Your token symbol
 
 After customizing your token's properties, build the contract:
 
-- Open your terminal and navigate to the location of the downloaded `OP_20` template folder.
-- Run the following commands:
+-   Open your terminal and navigate to the location of the downloaded `OP_20` template folder.
+-   Run the following commands:
 
-  ```sh
-  npm install
-  npm run build
-  ```
+    ```sh
+    npm install
+    npm run build
+    ```
 
-- After building, a `build` folder will be created in the root of the `OP_20` folder. Look for `[nameoftoken].wasm` for the compiled contract.
+-   After building, a `build` folder will be created in the root of the `OP_20` folder. Look for `[nameoftoken].wasm` for the compiled contract.
 
 ### 6. Deploy the Token Contract
 
-- Open the OP_WALLET extension and select the "deploy" option.
-- Drag your `.wasm` file or click to choose it.
-- Send your transaction to deploy the token contract onto Bitcoin with OP_NET.
+-   Open the OP_WALLET extension and select the "deploy" option.
+-   Drag your `.wasm` file or click to choose it.
+-   Send your transaction to deploy the token contract onto Bitcoin with OP_NET.
 
 ### 7. Mint Token Supply
 
 After deploying the token, mint the supply you wish to have:
 
-- Open your OP_WALLET, click the token in your balance that you just deployed, and select the "mint" option.
-- Click "max" or type in the amount of tokens you wish to mint, and then send the transaction.
+-   Open your OP_WALLET, click the token in your balance that you just deployed, and select the "mint" option.
+-   Click "max" or type in the amount of tokens you wish to mint, and then send the transaction.
 
 ### 8. Add Liquidity on Motoswap
 
-- Copy the token address from your OP_WALLET.
-- Go to [Motoswap](https://motoswap.org/pool) and paste your token address into the top or bottom box.
-- Enter the amount of tokens you wish to add to the liquidity pool.
-- Select the other side of the liquidity pair (e.g., WBTC) and enter the amount of tokens you wish to add.
-- Click "Add Liquidity".
+-   Copy the token address from your OP_WALLET.
+-   Go to [Motoswap](https://motoswap.org/pool) and paste your token address into the top or bottom box.
+-   Enter the amount of tokens you wish to add to the liquidity pool.
+-   Select the other side of the liquidity pair (e.g., WBTC) and enter the amount of tokens you wish to add.
+-   Click "Add Liquidity".
 
 Your token is now tradeable on Motoswap!
 
@@ -165,7 +169,7 @@ private airdrop(calldata: Calldata): BytesWriter {
         this._mint(address, amount);
     }
 
-    const writer: BytesWriter = new BytesWriter();
+    const writer: BytesWriter = new BytesWriter(1);
     writer.writeBoolean(true);
 
     return writer;
@@ -196,7 +200,7 @@ Events in OP_NET allow you to emit signals that external observers can listen to
 ```typescript
 class TransferEvent extends NetEvent {
     constructor(from: Address, to: Address, amount: u256) {
-        const writer = new BytesWriter();
+        const writer = new BytesWriter(ADDRESS_BYTE_LENGTH + ADDRESS_BYTE_LENGTH + 32);
         writer.writeAddress(from);
         writer.writeAddress(to);
         writer.writeU256(amount);
@@ -232,23 +236,23 @@ public mint(to: Address, amount: u256): void {
 
 ### Constructor Behavior
 
-- **Solidity:** The constructor runs only once at the time of contract deployment and is used for initializing contract state.
-- **AssemblyScript on OP_NET:** The constructor runs every time the contract is instantiated. Use `onInstantiated()` for initialization that should occur only once.
+-   **Solidity:** The constructor runs only once at the time of contract deployment and is used for initializing contract state.
+-   **AssemblyScript on OP_NET:** The constructor runs every time the contract is instantiated. Use `onInstantiated()` for initialization that should occur only once.
 
 ### State Management
 
-- **Solidity:** Variables declared at the contract level are automatically persistent and are stored in the contract's state.
-- **AssemblyScript on OP_NET:** Persistent state must be managed explicitly using storage classes like `StoredU256`, `StoredBoolean`, and `StoredString`.
+-   **Solidity:** Variables declared at the contract level are automatically persistent and are stored in the contract's state.
+-   **AssemblyScript on OP_NET:** Persistent state must be managed explicitly using storage classes like `StoredU256`, `StoredBoolean`, and `StoredString`.
 
 ### Method Overriding
 
-- **Solidity:** Method selectors are built-in, and overriding them is straightforward.
-- **AssemblyScript on OP_NET:** Method selectors are manually defined using functions like `encodeSelector()`, and method overriding is handled in `callMethod`.
+-   **Solidity:** Method selectors are built-in, and overriding them is straightforward.
+-   **AssemblyScript on OP_NET:** Method selectors are manually defined using functions like `encodeSelector()`, and method overriding is handled in `callMethod`.
 
 ### Event Handling
 
-- **Solidity:** Events are declared and emitted using the `emit` keyword.
-- **AssemblyScript on OP_NET:** Events are custom classes derived from `NetEvent` and are emitted using the `emitEvent` function.
+-   **Solidity:** Events are declared and emitted using the `emit` keyword.
+-   **AssemblyScript on OP_NET:** Events are custom classes derived from `NetEvent` and are emitted using the `emitEvent` function.
 
 ---
 
@@ -266,12 +270,12 @@ These features are implemented by extending the base `DeployableOP_20` or `OP_20
 
 For more detailed explanations on specific topics related to the OPNet runtime, refer to the following documentation:
 
-- [OPNet Runtime Documentation](https://github.com/btc-vision/btc-runtime/tree/main)
-- [Blockchain.md](https://github.com/btc-vision/btc-runtime/blob/main/docs/Blockchain.md)
-- [Contract.md](https://github.com/btc-vision/btc-runtime/blob/main/docs/Contract.md)
-- [Events.md](https://github.com/btc-vision/btc-runtime/blob/main/docs/Events.md)
-- [Pointers.md](https://github.com/btc-vision/btc-runtime/blob/main/docs/Pointers.md)
-- [Storage.md](https://github.com/btc-vision/btc-runtime/blob/main/docs/Storage.md)
+-   [OPNet Runtime Documentation](https://github.com/btc-vision/btc-runtime/tree/main)
+-   [Blockchain.md](https://github.com/btc-vision/btc-runtime/blob/main/docs/Blockchain.md)
+-   [Contract.md](https://github.com/btc-vision/btc-runtime/blob/main/docs/Contract.md)
+-   [Events.md](https://github.com/btc-vision/btc-runtime/blob/main/docs/Events.md)
+-   [Pointers.md](https://github.com/btc-vision/btc-runtime/blob/main/docs/Pointers.md)
+-   [Storage.md](https://github.com/btc-vision/btc-runtime/blob/main/docs/Storage.md)
 
 ---
 
