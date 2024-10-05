@@ -1,5 +1,6 @@
 import {
     Address,
+    Blockchain,
     BytesWriter,
     Calldata,
     encodeSelector,
@@ -18,6 +19,7 @@ export class MyToken extends OP_20 {
         const name: string = 'MyToken'; // Your token name.
         const symbol: string = 'TOKEN'; // Your token symbol.
 
+        Blockchain.log(`Deploying ${name} with max supply ${maxSupply.toString()}`); // Example log.
         super(maxSupply, decimals, name, symbol);
 
         // DO NOT USE TO DEFINE VARIABLE THAT ARE NOT CONSTANT. SEE "solidityLikeConstructor" BELOW.
@@ -57,6 +59,7 @@ export class MyToken extends OP_20 {
             const address = addresses[i];
             const amount = drops.get(address);
 
+            Blockchain.log(`Airdropping to ${address}`); // Example log.
             this._mint(address, amount);
         }
 
