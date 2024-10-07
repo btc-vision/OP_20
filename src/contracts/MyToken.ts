@@ -13,7 +13,6 @@ import { u128, u256 } from 'as-bignum/assembly';
 
 @final
 export class MyToken extends DeployableOP_20 {
-    // Could be DeployableOP_20 (if in 1.1.0, enabled on 2024-08-28)
     public constructor() {
         super();
 
