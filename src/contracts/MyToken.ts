@@ -1,51 +1,44 @@
 import {
     Address,
+    Blockchain,
     BytesWriter,
     Calldata,
+    DeployableOP_20,
     encodeSelector,
     Map,
-    OP_20,
+    OP20InitParameters,
     Selector,
 } from '@btc-vision/btc-runtime/runtime';
 import { u128, u256 } from 'as-bignum/assembly';
 
 @final
-export class MyToken extends OP_20 {
+export class MyToken extends DeployableOP_20 {
     // Could be DeployableOP_20 (if in 1.1.0, enabled on 2024-08-28)
-    constructor() {
+    public constructor() {
+        super();
+
+        // IMPORTANT. THIS WILL RUN EVERYTIME THE CONTRACT IS INTERACTED WITH. FOR SPECIFIC INITIALIZATION, USE "onDeployment" METHOD.
+    }
+
+    // "solidityLikeConstructor" This is a solidity-like constructor. This method will only run once. (if in 1.1.0, enabled on 2024-08-28)
+    public override onDeployment(_calldata: Calldata): void {
         const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256(); // Your max supply.
         const decimals: u8 = 18; // Your decimals.
         const name: string = 'MyToken'; // Your token name.
         const symbol: string = 'TOKEN'; // Your token symbol.
 
-        super(maxSupply, decimals, name, symbol);
+        this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
 
-        // DO NOT USE TO DEFINE VARIABLE THAT ARE NOT CONSTANT. SEE "solidityLikeConstructor" BELOW.
+        // Add your logic here. Eg, minting the initial supply:
+        this._mint(Blockchain.tx.origin, maxSupply);
     }
 
-    // "solidityLikeConstructor" This is a solidity-like constructor. This method will only run once. (if in 1.1.0, enabled on 2024-08-28)
-    public onInstantiated(): void {
-        if (!this.isInstantiated) {
-            super.onInstantiated(); // IMPORTANT.
-
-            //const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256(); // Your max supply.
-            //const decimals: u8 = 18; // Your decimals.
-            //const name: string = 'MyToken'; // Your token name.
-            //const symbol: string = 'TOKEN'; // Your token symbol.
-
-            //this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
-
-            // Add your logic here. Eg, minting the initial supply:
-            // this._mint(Blockchain.origin, maxSupply);
-        }
-    }
-
-    public override callMethod(method: Selector, calldata: Calldata): BytesWriter {
+    public override execute(method: Selector, calldata: Calldata): BytesWriter {
         switch (method) {
             case encodeSelector('airdrop'):
                 return this.airdrop(calldata);
             default:
-                return super.callMethod(method, calldata);
+                return super.execute(method, calldata);
         }
     }
 
