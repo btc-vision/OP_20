@@ -20,7 +20,7 @@ export class MyToken extends DeployableOP_20 {
         // IMPORTANT. THIS WILL RUN EVERYTIME THE CONTRACT IS INTERACTED WITH. FOR SPECIFIC INITIALIZATION, USE "onDeployment" METHOD.
     }
 
-    // "solidityLikeConstructor" This is a solidity-like constructor. This method will only run once. (if in 1.1.0, enabled on 2024-08-28)
+    // "solidityLikeConstructor" This is a solidity-like constructor. This method will only run once when the contract is deployed.
     public override onDeployment(_calldata: Calldata): void {
         const maxSupply: u256 = u128.fromString('100000000000000000000000000').toU256(); // Your max supply.
         const decimals: u8 = 18; // Your decimals.
