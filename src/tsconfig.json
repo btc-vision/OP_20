@@ -1,9 +1,4 @@
 {
-  "extends": "../node_modules/assemblyscript/std/assembly.json",
-  "include": [
-    "./*.ts",
-    "./**/*.ts",
-    "../contracts/**/*.ts",
-    "../contracts/*.ts"
-  ]
+    "extends": "assemblyscript/std/assembly.json",
+    "include": ["./*.ts", "./**/*.ts", "../contracts/**/*.ts", "../contracts/*.ts"]
 }
