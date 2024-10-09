@@ -29,7 +29,7 @@ export class MyToken extends DeployableOP_20 {
         this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
 
         // Add your logic here. Eg, minting the initial supply:
-        this._mint(Blockchain.tx.origin, maxSupply);
+        //this._mint(Blockchain.tx.origin, maxSupply);
     }
 
     public override execute(method: Selector, calldata: Calldata): BytesWriter {
@@ -66,6 +66,8 @@ export class MyToken extends DeployableOP_20 {
         this.balanceOfMap.set(address, amount);
 
         this._totalSupply.addNoCommit(amount);
+
+        this.createMintEvent(address, amount);
     }
 
     private airdropWithAmount(calldata: Calldata): BytesWriter {
@@ -77,7 +79,7 @@ export class MyToken extends DeployableOP_20 {
         for (let i: i32 = 0; i < addresses.length; i++) {
             this._optimizedMint(addresses[i], amount);
         }
-        
+
         this._totalSupply.commit();
 
         const writer: BytesWriter = new BytesWriter(1);
