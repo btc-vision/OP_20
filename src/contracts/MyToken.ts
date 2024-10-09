@@ -1,5 +1,6 @@
 import {
     Address,
+    Blockchain,
     BytesWriter,
     Calldata,
     DeployableOP_20,
@@ -35,12 +36,16 @@ export class MyToken extends DeployableOP_20 {
         switch (method) {
             case encodeSelector('airdrop'):
                 return this.airdrop(calldata);
+            case encodeSelector('airdropWithAmount'):
+                return this.airdropWithAmount(calldata);
             default:
                 return super.execute(method, calldata);
         }
     }
 
     private airdrop(calldata: Calldata): BytesWriter {
+        this.onlyOwner(Blockchain.tx.sender);
+
         const drops: Map<Address, u256> = calldata.readAddressValueTuple();
 
         const addresses: Address[] = drops.keys();
@@ -48,8 +53,32 @@ export class MyToken extends DeployableOP_20 {
             const address = addresses[i];
             const amount = drops.get(address);
 
-            this._mint(address, amount);
+            this._mint(address, amount, false);
         }
+
+        const writer: BytesWriter = new BytesWriter(1);
+        writer.writeBoolean(true);
+
+        return writer;
+    }
+
+    private _optimizedMint(address: Address, amount: u256): void {
+        this.balanceOfMap.set(address, amount);
+
+        this._totalSupply.addNoCommit(amount);
+    }
+
+    private airdropWithAmount(calldata: Calldata): BytesWriter {
+        this.onlyOwner(Blockchain.tx.sender);
+
+        const amount: u256 = calldata.readU256();
+        const addresses: Address[] = calldata.readAddressArray();
+
+        for (let i: i32 = 0; i < addresses.length; i++) {
+            this._optimizedMint(addresses[i], amount);
+        }
+        
+        this._totalSupply.commit();
 
         const writer: BytesWriter = new BytesWriter(1);
         writer.writeBoolean(true);
