@@ -7,10 +7,23 @@
             "optimizeLevel": 3,
             "shrinkLevel": 2,
             "converge": true,
-            "noAssert": true
+            "noAssert": true,
+            "runtime": "stub",
+            "memoryBase": 0,
+            "initialMemory": 1,
+            "maximumMemory": 512,
+            "bindings": "esm"
         }
     },
     "options": {
-        "bindings": "esm"
+        "measure": true,
+        "target": "release",
+        "noAssert": true,
+        "optimizeLevel": 3,
+        "shrinkLevel": 2,
+        "converge": true,
+        "disable": ["mutable-globals", "sign-extension", "nontrapping-f2i", "bulk-memory"],
+        "lowMemoryLimit": true,
+        "uncheckedBehavior": "never"
     }
 }
