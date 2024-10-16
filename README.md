@@ -90,15 +90,6 @@ const symbol: string = 'SYM'; // Your token symbol
 
 Modify the values as needed for your token.
 
-#### **Example Configuration:**
-
-```typescript
-const maxSupply: u256 = u128.fromString('50000000000000000000000').toU256(); // 50,000 tokens with 18 decimals
-const decimals: u8 = 18; // Your decimals
-const name: string = 'TestToken'; // Your token name
-const symbol: string = 'TTK'; // Your token symbol
-```
-
 ### 5. Install Dependencies and Build
 
 After customizing your token's properties, build the contract:
@@ -119,14 +110,7 @@ After customizing your token's properties, build the contract:
 -   Drag your `.wasm` file or click to choose it.
 -   Send your transaction to deploy the token contract onto Bitcoin with OP_NET.
 
-### 7. Mint Token Supply
-
-After deploying the token, mint the supply you wish to have:
-
--   Open your OP_WALLET, click the token in your balance that you just deployed, and select the "mint" option.
--   Click "max" or type in the amount of tokens you wish to mint, and then send the transaction.
-
-### 8. Add Liquidity on Motoswap
+### 7. Add Liquidity on Motoswap
 
 -   Copy the token address from your OP_WALLET.
 -   Go to [Motoswap](https://motoswap.org/pool) and paste your token address into the top or bottom box.

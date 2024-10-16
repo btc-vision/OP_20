@@ -4,7 +4,7 @@
     "description": "OP_20 example smart contract",
     "main": "index.js",
     "scripts": {
-        "build": "asc src/index.ts --target release --measure -Ospeed --noAssert --optimizeLevel 3 --shrinkLevel 2 --converge --disable mutable-globals,sign-extension,nontrapping-f2i,bulk-memory --runtime stub --memoryBase 0 --lowMemoryLimit --uncheckedBehavior never --initialMemory 1 --maximumMemory 512"
+        "build": "asc src/index.ts --target release --measure -Ospeed --noAssert --optimizeLevel 3 --shrinkLevel 2 --converge --disable mutable-globals,sign-extension,nontrapping-f2i,bulk-memory --runtime stub --memoryBase 0 --lowMemoryLimit --uncheckedBehavior never --initialMemory 1 --maximumMemory 512 --bindings esm"
     },
     "author": "BlobMaster41",
     "license": "MIT",
