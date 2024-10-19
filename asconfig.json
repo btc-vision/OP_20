@@ -2,15 +2,7 @@
     "targets": {
         "release": {
             "outFile": "build/MyToken.wasm",
-            "textFile": "build/MyToken.wat",
-            "sourceMap": false,
-            "optimizeLevel": 3,
-            "shrinkLevel": 2,
-            "converge": true,
-            "noAssert": true
+            "textFile": "build/MyToken.wat"
         }
-    },
-    "options": {
-        "bindings": "esm"
     }
 }
