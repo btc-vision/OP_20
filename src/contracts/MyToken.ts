@@ -36,11 +36,22 @@ export class MyToken extends DeployableOP_20 {
         switch (method) {
             case encodeSelector('airdrop'):
                 return this.airdrop(calldata);
+            case encodeSelector('mint'):
+                return this.mint(calldata);
             case encodeSelector('airdropWithAmount'):
                 return this.airdropWithAmount(calldata);
             default:
                 return super.execute(method, calldata);
         }
+    }
+
+    private mint(callData: Calldata): BytesWriter {
+        const response = new BytesWriter(1);
+        const resp = this._mint(callData.readAddress(), callData.readU256());
+
+        response.writeBoolean(resp);
+
+        return response;
     }
 
     private airdrop(calldata: Calldata): BytesWriter {
