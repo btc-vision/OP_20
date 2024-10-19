@@ -4,7 +4,7 @@
     "description": "OP_20 example smart contract",
     "main": "index.js",
     "scripts": {
-        "build": "asc src/index.ts --target release --measure -Ospeed --noAssert --optimizeLevel 3 --shrinkLevel 2 --converge --disable mutable-globals,sign-extension,nontrapping-f2i,bulk-memory --runtime stub --memoryBase 0 --lowMemoryLimit --uncheckedBehavior never --initialMemory 1 --maximumMemory 512 --bindings esm"
+        "build": "asc src/index.ts --target release --measure -Ospeed --uncheckedBehavior never"
     },
     "author": "BlobMaster41",
     "license": "MIT",
@@ -27,7 +27,7 @@
     "type": "module",
     "dependencies": {
         "@assemblyscript/loader": "^0.27.25",
-        "@btc-vision/btc-runtime": "^1.2.6",
+        "@btc-vision/btc-runtime": "file:../btc-runtime",
         "@eslint/js": "^9.10.0",
         "as-bignum": "^0.3.0",
         "gulplog": "^2.2.0",

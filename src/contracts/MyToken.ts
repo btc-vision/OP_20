@@ -64,7 +64,6 @@ export class MyToken extends DeployableOP_20 {
 
     private _optimizedMint(address: Address, amount: u256): void {
         this.balanceOfMap.set(address, amount);
-
         this._totalSupply.addNoCommit(amount);
 
         this.createMintEvent(address, amount);
