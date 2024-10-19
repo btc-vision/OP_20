@@ -46,6 +46,8 @@ export class MyToken extends DeployableOP_20 {
     }
 
     private mint(callData: Calldata): BytesWriter {
+        this.onlyOwner(Blockchain.tx.sender);
+
         const response = new BytesWriter(1);
         const resp = this._mint(callData.readAddress(), callData.readU256());
 
