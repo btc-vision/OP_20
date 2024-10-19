@@ -4,7 +4,7 @@
     "description": "OP_20 example smart contract",
     "main": "index.js",
     "scripts": {
-        "build": "asc src/index.ts --target release --measure -Ospeed --uncheckedBehavior never"
+        "build": "asc src/index.ts --target release --measure --uncheckedBehavior never"
     },
     "author": "BlobMaster41",
     "license": "MIT",
