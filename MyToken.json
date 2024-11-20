@@ -1,0 +1,309 @@
+[
+    {
+        "name": "allowance",
+        "inputs": [
+            {
+                "name": "owner",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "spender",
+                "type": "ADDRESS"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "remaining",
+                "type": "UINT256"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "approve",
+        "inputs": [
+            {
+                "name": "spender",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "amount",
+                "type": "UINT256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "success",
+                "type": "BOOL"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "balanceOf",
+        "inputs": [
+            {
+                "name": "account",
+                "type": "ADDRESS"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "balance",
+                "type": "UINT256"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "burn",
+        "inputs": [
+            {
+                "name": "value",
+                "type": "UINT256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "success",
+                "type": "BOOL"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "transfer",
+        "inputs": [
+            {
+                "name": "recipient",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "amount",
+                "type": "UINT256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "success",
+                "type": "BOOL"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "transferFrom",
+        "inputs": [
+            {
+                "name": "sender",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "recipient",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "amount",
+                "type": "UINT256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "success",
+                "type": "BOOL"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "mint",
+        "inputs": [
+            {
+                "name": "recipient",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "amount",
+                "type": "UINT256"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "success",
+                "type": "BOOL"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "airdrop",
+        "inputs": [
+            {
+                "name": "tuple",
+                "type": "ADDRESS_UINT256_TUPLE"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "success",
+                "type": "BOOL"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "airdropWithAmount",
+        "inputs": [
+            {
+                "name": "amount",
+                "type": "UINT256"
+            },
+            {
+                "name": "addresses",
+                "type": "ARRAY_OF_ADDRESSES"
+            }
+        ],
+        "outputs": [
+            {
+                "name": "success",
+                "type": "BOOL"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "decimals",
+        "constant": true,
+        "outputs": [
+            {
+                "name": "decimals",
+                "type": "UINT8"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "name",
+        "constant": true,
+        "outputs": [
+            {
+                "name": "name",
+                "type": "STRING"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "symbol",
+        "constant": true,
+        "outputs": [
+            {
+                "name": "symbol",
+                "type": "STRING"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "totalSupply",
+        "outputs": [
+            {
+                "name": "totalSupply",
+                "type": "UINT256"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "maximumSupply",
+        "outputs": [
+            {
+                "name": "maximumSupply",
+                "type": "UINT256"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "Mint",
+        "values": [
+            {
+                "name": "to",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "amount",
+                "type": "UINT256"
+            }
+        ],
+        "type": "event"
+    },
+    {
+        "name": "Transfer",
+        "values": [
+            {
+                "name": "from",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "to",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "amount",
+                "type": "UINT256"
+            }
+        ],
+        "type": "event"
+    },
+    {
+        "name": "Burn",
+        "values": [
+            {
+                "name": "amount",
+                "type": "UINT256"
+            }
+        ],
+        "type": "event"
+    },
+    {
+        "name": "Approve",
+        "values": [
+            {
+                "name": "owner",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "spender",
+                "type": "ADDRESS"
+            },
+            {
+                "name": "value",
+                "type": "UINT256"
+            }
+        ],
+        "type": "event"
+    },
+    {
+        "name": "owner",
+        "constant": true,
+        "outputs": [
+            {
+                "name": "owner",
+                "type": "ADDRESS"
+            }
+        ],
+        "type": "function"
+    },
+    {
+        "name": "address",
+        "constant": true,
+        "outputs": [
+            {
+                "name": "address",
+                "type": "ADDRESS"
+            }
+        ],
+        "type": "function"
+    }
+]
