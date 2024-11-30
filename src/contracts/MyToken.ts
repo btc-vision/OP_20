@@ -46,7 +46,7 @@ export class MyToken extends DeployableOP_20 {
     }
 
     private mint(callData: Calldata): BytesWriter {
-        this.onlyOwner(Blockchain.tx.sender);
+        this.onlyDeployer(Blockchain.tx.sender);
 
         const response = new BytesWriter(1);
         const resp = this._mint(callData.readAddress(), callData.readU256());
@@ -57,7 +57,7 @@ export class MyToken extends DeployableOP_20 {
     }
 
     private airdrop(calldata: Calldata): BytesWriter {
-        this.onlyOwner(Blockchain.tx.sender);
+        this.onlyDeployer(Blockchain.tx.sender);
 
         const drops: Map<Address, u256> = calldata.readAddressValueTuple();
 
@@ -83,7 +83,7 @@ export class MyToken extends DeployableOP_20 {
     }
 
     private airdropWithAmount(calldata: Calldata): BytesWriter {
-        this.onlyOwner(Blockchain.tx.sender);
+        this.onlyDeployer(Blockchain.tx.sender);
 
         const amount: u256 = calldata.readU256();
         const addresses: Address[] = calldata.readAddressArray();
