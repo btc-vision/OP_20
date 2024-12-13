@@ -1,3 +1,4 @@
+import { u128, u256 } from '@btc-vision/as-bignum/assembly';
 import {
     Address,
     Blockchain,
@@ -9,7 +10,6 @@ import {
     OP20InitParameters,
     Selector,
 } from '@btc-vision/btc-runtime/runtime';
-import { u128, u256 } from 'as-bignum/assembly';
 
 @final
 export class MyToken extends DeployableOP_20 {
