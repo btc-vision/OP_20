@@ -2,6 +2,7 @@ import { u128, u256 } from '@btc-vision/as-bignum/assembly';
 import {
     Address,
     Blockchain,
+    BOOLEAN_BYTE_LENGTH,
     BytesWriter,
     Calldata,
     DeployableOP_20,
@@ -48,7 +49,7 @@ export class MyToken extends DeployableOP_20 {
     private mint(callData: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
-        const response = new BytesWriter(1);
+        const response = new BytesWriter(BOOLEAN_BYTE_LENGTH);
         const resp = this._mint(callData.readAddress(), callData.readU256());
 
         response.writeBoolean(resp);
@@ -69,7 +70,7 @@ export class MyToken extends DeployableOP_20 {
             this._mint(address, amount, false);
         }
 
-        const writer: BytesWriter = new BytesWriter(1);
+        const writer: BytesWriter = new BytesWriter(BOOLEAN_BYTE_LENGTH);
         writer.writeBoolean(true);
 
         return writer;
@@ -94,7 +95,7 @@ export class MyToken extends DeployableOP_20 {
 
         this._totalSupply.commit();
 
-        const writer: BytesWriter = new BytesWriter(1);
+        const writer: BytesWriter = new BytesWriter(BOOLEAN_BYTE_LENGTH);
         writer.writeBoolean(true);
 
         return writer;
