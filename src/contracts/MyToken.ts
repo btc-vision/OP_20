@@ -30,7 +30,7 @@ export class MyToken extends DeployableOP_20 {
         this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
 
         // Add your logic here. Eg, minting the initial supply:
-        this._mint(Blockchain.tx.origin, maxSupply);
+        //this._mint(Blockchain.tx.origin, maxSupply);
     }
 
     public override execute(method: Selector, calldata: Calldata): BytesWriter {
