@@ -18,7 +18,8 @@
             "memoryBase": 0,
             "initialMemory": 1,
             "maximumMemory": 512,
-            "bindings": "esm"
+            "bindings": "esm",
+            "exportStart": "start"
         }
     }
 }
