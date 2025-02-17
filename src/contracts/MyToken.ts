@@ -46,11 +46,11 @@ export class MyToken extends DeployableOP_20 {
         }
     }
 
-    private mint(callData: Calldata): BytesWriter {
+    private mint(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
         const response = new BytesWriter(BOOLEAN_BYTE_LENGTH);
-        const resp = this._mint(callData.readAddress(), callData.readU256());
+        const resp = this._mint(calldata.readAddress(), calldata.readU256());
 
         response.writeBoolean(resp);
 
