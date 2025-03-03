@@ -29,7 +29,7 @@
         "@assemblyscript/loader": "^0.27.34",
         "@btc-vision/as-bignum": "^0.0.4",
         "@btc-vision/btc-runtime": "file:../btc-runtime",
-        "@btc-vision/opnet-transformer": "file:../opnet-transformer",
+        "@btc-vision/opnet-transform": "file:../opnet-transform",
         "@eslint/js": "^9.21.0",
         "gulplog": "^2.2.0",
         "ts-node": "^10.9.2",

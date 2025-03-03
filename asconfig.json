@@ -26,6 +26,6 @@
         }
     },
     "options": {
-        "transform": "@btc-vision/opnet-transformer"
+        "transform": "@btc-vision/opnet-transform"
     }
 }
