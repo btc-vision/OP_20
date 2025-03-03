@@ -20,7 +20,12 @@
             "maximumMemory": 512,
             "bindings": "esm",
             "exportStart": "start",
-            "use": ["abort=src/index/abort"]
+            "use": [
+                "abort=src/index/abort"
+            ]
         }
+    },
+    "options": {
+        "transform": "@btc-vision/opnet-transform"
     }
 }
