@@ -6,10 +6,8 @@ import {
     BytesWriter,
     Calldata,
     DeployableOP_20,
-    encodeSelector,
     Map,
     OP20InitParameters,
-    Selector,
 } from '@btc-vision/btc-runtime/runtime';
 
 @final
@@ -33,20 +31,18 @@ export class MyToken extends DeployableOP_20 {
         //this._mint(Blockchain.tx.origin, maxSupply);
     }
 
-    public override execute(method: Selector, calldata: Calldata): BytesWriter {
-        switch (method) {
-            case encodeSelector('airdrop(tuple(address,uint256))'):
-                return this.airdrop(calldata);
-            case encodeSelector('mint(address,uint256)'):
-                return this.mint(calldata);
-            case encodeSelector('airdropWithAmount(uint256,address[])'):
-                return this.airdropWithAmount(calldata);
-            default:
-                return super.execute(method, calldata);
-        }
-    }
-
-    private mint(calldata: Calldata): BytesWriter {
+    @method(
+        {
+            name: 'address',
+            type: ABIDataTypes.ADDRESS,
+        },
+        {
+            name: 'amount',
+            type: ABIDataTypes.UINT256,
+        },
+    )
+    @returns('bool')
+    public mint(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
         const response = new BytesWriter(BOOLEAN_BYTE_LENGTH);
@@ -57,7 +53,12 @@ export class MyToken extends DeployableOP_20 {
         return response;
     }
 
-    private airdrop(calldata: Calldata): BytesWriter {
+    @method({
+        name: 'drops',
+        type: ABIDataTypes.ADDRESS_UINT256_TUPLE,
+    })
+    @returns('bool')
+    public airdrop(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
         const drops: Map<Address, u256> = calldata.readAddressValueTuple();
@@ -76,14 +77,18 @@ export class MyToken extends DeployableOP_20 {
         return writer;
     }
 
-    private _optimizedMint(address: Address, amount: u256): void {
-        this.balanceOfMap.set(address, amount);
-        this._totalSupply.addNoCommit(amount);
-
-        this.createMintEvent(address, amount);
-    }
-
-    private airdropWithAmount(calldata: Calldata): BytesWriter {
+    @method(
+        {
+            name: 'amount',
+            type: ABIDataTypes.ADDRESS,
+        },
+        {
+            name: 'addresses',
+            type: ABIDataTypes.ARRAY_OF_ADDRESSES,
+        },
+    )
+    @returns('bool')
+    public airdropWithAmount(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
         const amount: u256 = calldata.readU256();
@@ -99,5 +104,12 @@ export class MyToken extends DeployableOP_20 {
         writer.writeBoolean(true);
 
         return writer;
+    }
+
+    private _optimizedMint(address: Address, amount: u256): void {
+        this.balanceOfMap.set(address, amount);
+        this._totalSupply.addNoCommit(amount);
+
+        this.createMintEvent(address, amount);
     }
 }
