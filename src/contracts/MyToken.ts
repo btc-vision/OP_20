@@ -1,12 +1,12 @@
 import { u256 } from '@btc-vision/as-bignum/assembly';
 import {
     Address,
+    AddressMap,
     Blockchain,
     BOOLEAN_BYTE_LENGTH,
     BytesWriter,
     Calldata,
     DeployableOP_20,
-    Map,
     OP20InitParameters,
 } from '@btc-vision/btc-runtime/runtime';
 
@@ -61,7 +61,7 @@ export class MyToken extends DeployableOP_20 {
     public airdrop(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
-        const drops: Map<Address, u256> = calldata.readAddressValueTuple();
+        const drops: AddressMap<u256> = calldata.readAddressMapU256();
 
         const addresses: Address[] = drops.keys();
         for (let i: i32 = 0; i < addresses.length; i++) {
