@@ -27,7 +27,7 @@
     "type": "module",
     "dependencies": {
         "@assemblyscript/loader": "^0.27.34",
-        "@btc-vision/as-bignum": "^0.0.4",
+        "@btc-vision/as-bignum": "^0.0.5",
         "@btc-vision/btc-runtime": "file:../btc-runtime",
         "@btc-vision/opnet-transform": "file:../opnet-transform",
         "@eslint/js": "^9.21.0",
