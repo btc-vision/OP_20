@@ -41,7 +41,10 @@ export class MyToken extends DeployableOP_20 {
             type: ABIDataTypes.UINT256,
         },
     )
-    @returns('bool')
+    @returns({
+        name: 'success',
+        type: ABIDataTypes.BOOL,
+    })
     public mint(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
@@ -57,7 +60,10 @@ export class MyToken extends DeployableOP_20 {
         name: 'drops',
         type: ABIDataTypes.ADDRESS_UINT256_TUPLE,
     })
-    @returns('bool')
+    @returns({
+        name: 'success',
+        type: ABIDataTypes.BOOL,
+    })
     public airdrop(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
@@ -87,7 +93,10 @@ export class MyToken extends DeployableOP_20 {
             type: ABIDataTypes.ARRAY_OF_ADDRESSES,
         },
     )
-    @returns('bool')
+    @returns({
+        name: 'success',
+        type: ABIDataTypes.BOOL,
+    })
     public airdropWithAmount(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
