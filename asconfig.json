@@ -1,31 +1,29 @@
 {
     "targets": {
         "release": {
-            "outFile": "build/MyToken.wasm",
-            "textFile": "build/MyToken.wat",
-            "sourceMap": false,
-            "optimizeLevel": 3,
-            "shrinkLevel": 2,
-            "converge": true,
-            "noAssert": true,
-            "disable": [
-                "mutable-globals",
-                "sign-extension",
-                "nontrapping-f2i",
-                "bulk-memory"
-            ],
-            "runtime": "stub",
-            "memoryBase": 0,
-            "initialMemory": 1,
-            "maximumMemory": 512,
-            "bindings": "esm",
-            "exportStart": "start",
-            "use": [
-                "abort=src/index/abort"
-            ]
+            "outFile": "build/MyToken.wasm"
         }
     },
     "options": {
+        "sourceMap": false,
+        "optimizeLevel": 3,
+        "shrinkLevel": 2,
+        "converge": true,
+        "noAssert": false,
+        "disable": [
+            "mutable-globals",
+            "sign-extension",
+            "nontrapping-f2i",
+            "bulk-memory"
+        ],
+        "runtime": "stub",
+        "memoryBase": 0,
+        "initialMemory": 1,
+        "maximumMemory": 512,
+        "exportStart": "start",
+        "use": [
+            "abort=src/index/abort"
+        ],
         "transform": "@btc-vision/opnet-transform"
     }
 }
