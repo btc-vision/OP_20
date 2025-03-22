@@ -1,7 +1,6 @@
 {
-  "extends": "@btc-vision/opnet-transform/std/assembly.json",
-  "include": [
-    "./**/*.ts",
-    "../contracts/**/*.ts"
-  ]
+    "extends": "@btc-vision/opnet-transform/std/assembly.json",
+    "include": [
+        "./**/*.ts"
+    ]
 }
