@@ -45,6 +45,7 @@ export class MyToken extends DeployableOP_20 {
         name: 'success',
         type: ABIDataTypes.BOOL,
     })
+    @emit('Transfer')
     public mint(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
@@ -64,6 +65,7 @@ export class MyToken extends DeployableOP_20 {
         name: 'success',
         type: ABIDataTypes.BOOL,
     })
+    @emit('Transfer')
     public airdrop(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
@@ -97,6 +99,7 @@ export class MyToken extends DeployableOP_20 {
         name: 'success',
         type: ABIDataTypes.BOOL,
     })
+    @emit('Transfer')
     public airdropWithAmount(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
