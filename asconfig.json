@@ -19,7 +19,6 @@
         "runtime": "stub",
         "memoryBase": 0,
         "initialMemory": 1,
-        "maximumMemory": 512,
         "exportStart": "start",
         "use": [
             "abort=src/index/abort"
