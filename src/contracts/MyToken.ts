@@ -88,7 +88,7 @@ export class MyToken extends DeployableOP_20 {
     @method(
         {
             name: 'amount',
-            type: ABIDataTypes.ADDRESS,
+            type: ABIDataTypes.UINT256,
         },
         {
             name: 'addresses',
