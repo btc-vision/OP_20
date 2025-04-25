@@ -31,6 +31,18 @@ export class MyToken extends DeployableOP_20 {
         // this._mint(Blockchain.tx.origin, maxSupply);
     }
 
+    /**
+     * Mints tokens to the specified address.
+     *
+     * @param calldata Calldata containing an `Address` and a `u256` to mint to.
+     */
+    private _optimizedMint(address: Address, amount: u256): void {
+        this.balanceOfMap.set(address, amount);
+        this._totalSupply.addNoCommit(amount);
+
+        this.createMintEvent(address, amount);
+    }
+
     @method(
         {
             name: 'address',
@@ -45,7 +57,7 @@ export class MyToken extends DeployableOP_20 {
         name: 'success',
         type: ABIDataTypes.BOOL,
     })
-    @emit('Transfer')
+    @emit('Mint')
     public mint(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
@@ -57,57 +69,31 @@ export class MyToken extends DeployableOP_20 {
         return response;
     }
 
+    /**
+     * Mints tokens to the specified addresses.
+     *
+     * @param calldata Calldata containing an `AddressMap<Address, u256>` to mint to.
+     */
     @method({
-        name: 'drops',
+        name: 'addressAndAmount',
         type: ABIDataTypes.ADDRESS_UINT256_TUPLE,
     })
     @returns({
         name: 'success',
         type: ABIDataTypes.BOOL,
     })
-    @emit('Transfer')
+    @emit('Mint')
     public airdrop(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
-        const drops: AddressMap<u256> = calldata.readAddressMapU256();
+        const addressAndAmount: AddressMap<u256> = calldata.readAddressMapU256();
 
-        const addresses: Address[] = drops.keys();
+        const addresses: Address[] = addressAndAmount.keys();
         for (let i: i32 = 0; i < addresses.length; i++) {
             const address = addresses[i];
-            const amount = drops.get(address);
+            const amount = addressAndAmount.get(address);
 
-            this._mint(address, amount, false);
-        }
-
-        const writer: BytesWriter = new BytesWriter(BOOLEAN_BYTE_LENGTH);
-        writer.writeBoolean(true);
-
-        return writer;
-    }
-
-    @method(
-        {
-            name: 'amount',
-            type: ABIDataTypes.UINT256,
-        },
-        {
-            name: 'addresses',
-            type: ABIDataTypes.ARRAY_OF_ADDRESSES,
-        },
-    )
-    @returns({
-        name: 'success',
-        type: ABIDataTypes.BOOL,
-    })
-    @emit('Transfer')
-    public airdropWithAmount(calldata: Calldata): BytesWriter {
-        this.onlyDeployer(Blockchain.tx.sender);
-
-        const amount: u256 = calldata.readU256();
-        const addresses: Address[] = calldata.readAddressArray();
-
-        for (let i: i32 = 0; i < addresses.length; i++) {
-            this._optimizedMint(addresses[i], amount);
+            this._optimizedMint(address, amount);
         }
 
         this._totalSupply.commit();
@@ -116,12 +102,5 @@ export class MyToken extends DeployableOP_20 {
         writer.writeBoolean(true);
 
         return writer;
-    }
-
-    private _optimizedMint(address: Address, amount: u256): void {
-        this.balanceOfMap.set(address, amount);
-        this._totalSupply.addNoCommit(amount);
-
-        this.createMintEvent(address, amount);
     }
 }
