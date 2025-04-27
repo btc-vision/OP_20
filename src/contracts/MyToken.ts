@@ -22,25 +22,13 @@ export class MyToken extends DeployableOP_20 {
     public override onDeployment(_calldata: Calldata): void {
         const maxSupply: u256 = u256.fromString('100000000000000000000000000000000000'); // Your max supply.
         const decimals: u8 = 18; // Your decimals.
-        const name: string = 'RELEASE'; // Your token name.
-        const symbol: string = 'WEN'; // Your token symbol.
+        const name: string = 'LAUNCHING'; // Your token name.
+        const symbol: string = 'TMINUS2'; // Your token symbol.
 
         this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
 
         // Add your logic here. Eg, minting the initial supply:
-        // this._mint(Blockchain.tx.origin, maxSupply);
-    }
-
-    /**
-     * Mints tokens to the specified address.
-     *
-     * @param calldata Calldata containing an `Address` and a `u256` to mint to.
-     */
-    private _optimizedMint(address: Address, amount: u256): void {
-        this.balanceOfMap.set(address, amount);
-        this._totalSupply.addNoCommit(amount);
-
-        this.createMintEvent(address, amount);
+        this._mint(Blockchain.tx.origin, maxSupply);
     }
 
     @method(
@@ -102,5 +90,17 @@ export class MyToken extends DeployableOP_20 {
         writer.writeBoolean(true);
 
         return writer;
+    }
+
+    /**
+     * Mints tokens to the specified address.
+     *
+     * @param calldata Calldata containing an `Address` and a `u256` to mint to.
+     */
+    private _optimizedMint(address: Address, amount: u256): void {
+        this.balanceOfMap.set(address, amount);
+        this._totalSupply.addNoCommit(amount);
+
+        this.createMintEvent(address, amount);
     }
 }
