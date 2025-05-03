@@ -11,18 +11,6 @@ import {
     SafeMath,
 } from '@btc-vision/btc-runtime/runtime';
 
-// To generate the following Uint8Array value, run generateUint8ArrayValues.ts
-const maxSupplyUint8Array: Uint8Array = new Uint8Array(32);
-
-maxSupplyUint8Array.set(
-    [
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-        0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x3b, 0x2e, 0x3c, 0x9f, 0xd0, 0x80, 0x3c, 0xe8, 0x00,
-        0x00, 0x00,
-    ],
-    0,
-);
-
 @final
 export class MyToken extends DeployableOP_20 {
     public constructor() {
@@ -33,7 +21,7 @@ export class MyToken extends DeployableOP_20 {
 
     // "solidityLikeConstructor" This is a solidity-like constructor. This method will only run once when the contract is deployed.
     public override onDeployment(_calldata: Calldata): void {
-        const maxSupply: u256 = u256.fromUint8ArrayBE(maxSupplyUint8Array); // Your max supply.
+        const maxSupply: u256 = u256.fromString('1000000000000000000000000000'); // Your max supply. (Here, 1 billion tokens)
         const decimals: u8 = 18; // Your decimals.
         const name: string = 'Test'; // Your token name.
         const symbol: string = 'TEST'; // Your token symbol.
