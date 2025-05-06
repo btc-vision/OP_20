@@ -79,7 +79,7 @@ const symbol: string = 'SYM'; // e.g., 'MYT'
 
 #### **Modifying the Contract Code**
 
-Open the `OP_20` template repository in your IDE or text editor and navigate to `src/contracts/MyToken.ts`. Look for the following section in the `onInstantiated` method:
+Open the `OP_20` template repository in your IDE or text editor and navigate to `set maxSupply, decimals, name, symbol.`. Look for the following section in the `onInstantiated` method:
 
 ```typescript
 const maxSupply: u256 = u128.fromString('1000000000000000000000000').toU256(); // Your max supply
