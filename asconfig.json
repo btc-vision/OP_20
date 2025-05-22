@@ -23,9 +23,7 @@
         "memoryBase": 0,
         "initialMemory": 1,
         "exportStart": "start",
-        "use": [
-            "abort=src/index/abort"
-        ],
+        "use": ["abort=src/index/abort"],
         "transform": "@btc-vision/opnet-transform"
     }
 }
