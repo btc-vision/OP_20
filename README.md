@@ -135,7 +135,7 @@ To add custom functionality to your token, you can define new methods in your co
 ```typescript
 public override callMethod(method: Selector, calldata: Calldata): BytesWriter {
     switch (method) {
-        case encodeSelector('airdrop'):
+        case encodeSelector('airdrop()'):
             return this.airdrop(calldata);
         default:
             return super.callMethod(method, calldata);
