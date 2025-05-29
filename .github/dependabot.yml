@@ -22,8 +22,6 @@ updates:
           prefix: '⬆️'
           include: scope
 
-      reviewers:
-          - 'BlobMaster41'
       labels:
           - 'dependencies'
           - 'npm'
