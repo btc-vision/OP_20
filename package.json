@@ -9,7 +9,7 @@
     "author": "BlobMaster41",
     "license": "MIT",
     "devDependencies": {
-        "@types/node": "^22.15.27",
+        "@types/node": "^24.0.1",
         "assemblyscript": "^0.28.1",
         "prettier": "^3.5.3"
     },
