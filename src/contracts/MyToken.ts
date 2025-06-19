@@ -6,13 +6,13 @@ import {
     BOOLEAN_BYTE_LENGTH,
     BytesWriter,
     Calldata,
-    DeployableOP_20,
+    OP20,
     OP20InitParameters,
     SafeMath,
 } from '@btc-vision/btc-runtime/runtime';
 
 @final
-export class MyToken extends DeployableOP_20 {
+export class MyToken extends OP20 {
     public constructor() {
         super();
 
@@ -49,13 +49,8 @@ export class MyToken extends DeployableOP_20 {
     @emit('Mint')
     public mint(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
-
-        const response = new BytesWriter(BOOLEAN_BYTE_LENGTH);
-        const resp = this._mint(calldata.readAddress(), calldata.readU256());
-
-        response.writeBoolean(resp);
-
-        return response;
+        this._mint(calldata.readAddress(), calldata.readU256());
+        return new BytesWriter(0);
     }
 
     /**
