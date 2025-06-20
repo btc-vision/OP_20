@@ -41,7 +41,7 @@ export class MyToken extends OP20 {
             type: ABIDataTypes.UINT256,
         },
     )
-    @emit('Mint')
+    @emit('Minted')
     public mint(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
         this._mint(calldata.readAddress(), calldata.readU256());
@@ -57,11 +57,7 @@ export class MyToken extends OP20 {
         name: 'addressAndAmount',
         type: ABIDataTypes.ADDRESS_UINT256_TUPLE,
     })
-    @returns({
-        name: 'success',
-        type: ABIDataTypes.BOOL,
-    })
-    @emit('Mint')
+    @emit('Minted')
     public airdrop(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
