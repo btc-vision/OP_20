@@ -3,7 +3,6 @@ import {
     Address,
     AddressMap,
     Blockchain,
-    BOOLEAN_BYTE_LENGTH,
     BytesWriter,
     Calldata,
     OP20,
@@ -42,10 +41,6 @@ export class MyToken extends OP20 {
             type: ABIDataTypes.UINT256,
         },
     )
-    @returns({
-        name: 'success',
-        type: ABIDataTypes.BOOL,
-    })
     @emit('Mint')
     public mint(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
@@ -94,9 +89,6 @@ export class MyToken extends OP20 {
 
         this._totalSupply.set(SafeMath.add(this._totalSupply.value, totalAirdropped));
 
-        const writer: BytesWriter = new BytesWriter(BOOLEAN_BYTE_LENGTH);
-        writer.writeBoolean(true);
-
-        return writer;
+        return new BytesWriter(0);
     }
 }
