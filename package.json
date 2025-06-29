@@ -28,7 +28,7 @@
     "dependencies": {
         "@assemblyscript/loader": "^0.28.1",
         "@btc-vision/as-bignum": "^0.0.5",
-        "@btc-vision/btc-runtime": "github:btc-vision/btc-runtime#15e23cc3",
+        "@btc-vision/btc-runtime": "github:btc-vision/btc-runtime#a61c2ac7",
         "@btc-vision/opnet-transform": "^0.1.5",
         "@eslint/js": "^9.27.0",
         "gulplog": "^2.2.0",
