@@ -9,9 +9,9 @@
     "author": "BlobMaster41",
     "license": "MIT",
     "devDependencies": {
-        "@types/node": "^24.0.3",
+        "@types/node": "^24.0.8",
         "assemblyscript": "^0.28.2",
-        "prettier": "^3.6.0"
+        "prettier": "^3.6.2"
     },
     "keywords": [
         "bitcoin",
@@ -28,12 +28,12 @@
     "dependencies": {
         "@assemblyscript/loader": "^0.28.2",
         "@btc-vision/as-bignum": "^0.0.5",
-        "@btc-vision/btc-runtime": "file:../btc-runtime",
+        "@btc-vision/btc-runtime": "^1.8.1",
         "@btc-vision/opnet-transform": "^0.1.6",
-        "@eslint/js": "^9.29.0",
+        "@eslint/js": "^9.30.0",
         "gulplog": "^2.2.0",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.3",
-        "typescript-eslint": "^8.35.0"
+        "typescript-eslint": "^8.35.1"
     }
 }
