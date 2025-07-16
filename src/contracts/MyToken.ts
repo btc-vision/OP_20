@@ -23,8 +23,11 @@ export class MyToken extends DeployableOP_20 {
     public override onDeployment(_calldata: Calldata): void {
         const maxSupply: u256 = u256.fromString('1000000000000000000000000000'); // Your max supply. (Here, 1 billion tokens)
         const decimals: u8 = 18; // Your decimals.
-        const name: string = 'Test'; // Your token name.
-        const symbol: string = 'TEST'; // Your token symbol.
+        const name: string = 'wilamz
+            
+            
+    '; // Your token name.
+        const symbol: string = 'WLMZ'; // Your token symbol.
 
         this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
 
@@ -103,5 +106,7 @@ export class MyToken extends DeployableOP_20 {
         writer.writeBoolean(true);
 
         return writer;
-    }
+    }git remote add origin https://github.com/willybabyyy/will.git
+git branch -M main
+git push -u origin main
 }
