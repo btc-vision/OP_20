@@ -1,4 +1,4 @@
-import { u256 } from '@btc-vision/as-bignum/assembly';
+	import { u256 } from '@btc-vision/as-bignum/assembly';
 import {
     Address,
     AddressMap,
@@ -25,7 +25,7 @@ export class MyToken extends DeployableOP_20 {
         const decimals: u8 = 18; // Your decimals.
         const name: string = 'Sajjad'; // Your token name.
         const symbol: string = 'SIS'; // Your token symbol.
-
+			
         this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
 
         // Add your logic here. Eg, minting the initial supply:
