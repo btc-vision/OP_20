@@ -23,10 +23,10 @@ export class MyToken extends DeployableOP_20 {
     public override onDeployment(_calldata: Calldata): void {
         const maxSupply: u256 = u256.fromString('1000000000000000000000000000'); // Your max supply. (Here, 1 billion tokens)
         const decimals: u8 = 18; // Your decimals.
-        const name: string = 'Test'; // Your token name.
-        const symbol: string = 'TEST'; // Your token symbol.
+        const name: string = 'Comingsoon1'; // Your token name.
+        const symbol: string = '$CM'; // Your token symbol.
 
-        this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
+        this.instantiate(new OP20InitParameters(maxSupply, decimals, Comingsoon1, $CM));
 
         // Add your logic here. Eg, minting the initial supply:
         this._mint(Blockchain.tx.origin, maxSupply);
@@ -34,16 +34,16 @@ export class MyToken extends DeployableOP_20 {
 
     @method(
         {
-            name: 'address',
+            Comingsoon1: 'address',
             type: ABIDataTypes.ADDRESS,
         },
         {
-            name: 'amount',
+            Comingsoon1: 'amount',
             type: ABIDataTypes.UINT256,
         },
     )
     @returns({
-        name: 'success',
+        Comingsoon1: 'success',
         type: ABIDataTypes.BOOL,
     })
     @emit('Mint')
@@ -64,11 +64,11 @@ export class MyToken extends DeployableOP_20 {
      * @param calldata Calldata containing an `AddressMap<Address, u256>` to mint to.
      */
     @method({
-        name: 'addressAndAmount',
+        Comingsoon1: 'addressAndAmount',
         type: ABIDataTypes.ADDRESS_UINT256_TUPLE,
     })
     @returns({
-        name: 'success',
+        Comingsoon1: 'success',
         type: ABIDataTypes.BOOL,
     })
     @emit('Mint')
