@@ -3,16 +3,15 @@ import {
     Address,
     AddressMap,
     Blockchain,
-    BOOLEAN_BYTE_LENGTH,
     BytesWriter,
     Calldata,
-    DeployableOP_20,
+    OP20,
     OP20InitParameters,
     SafeMath,
 } from '@btc-vision/btc-runtime/runtime';
 
 @final
-export class MyToken extends DeployableOP_20 {
+export class MyToken extends OP20 {
     public constructor() {
         super();
 
@@ -29,7 +28,7 @@ export class MyToken extends DeployableOP_20 {
         this.instantiate(new OP20InitParameters(maxSupply, decimals, name, symbol));
 
         // Add your logic here. Eg, minting the initial supply:
-        this._mint(Blockchain.tx.origin, maxSupply);
+        // this._mint(Blockchain.tx.origin, maxSupply);
     }
 
     @method(
@@ -42,20 +41,11 @@ export class MyToken extends DeployableOP_20 {
             type: ABIDataTypes.UINT256,
         },
     )
-    @returns({
-        name: 'success',
-        type: ABIDataTypes.BOOL,
-    })
-    @emit('Mint')
+    @emit('Minted')
     public mint(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
-
-        const response = new BytesWriter(BOOLEAN_BYTE_LENGTH);
-        const resp = this._mint(calldata.readAddress(), calldata.readU256());
-
-        response.writeBoolean(resp);
-
-        return response;
+        this._mint(calldata.readAddress(), calldata.readU256());
+        return new BytesWriter(0);
     }
 
     /**
@@ -67,11 +57,7 @@ export class MyToken extends DeployableOP_20 {
         name: 'addressAndAmount',
         type: ABIDataTypes.ADDRESS_UINT256_TUPLE,
     })
-    @returns({
-        name: 'success',
-        type: ABIDataTypes.BOOL,
-    })
-    @emit('Mint')
+    @emit('Minted')
     public airdrop(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
 
@@ -94,14 +80,11 @@ export class MyToken extends DeployableOP_20 {
 
             totalAirdropped = SafeMath.add(totalAirdropped, amount);
 
-            this.createMintEvent(address, amount);
+            this.createMintedEvent(address, amount);
         }
 
         this._totalSupply.set(SafeMath.add(this._totalSupply.value, totalAirdropped));
 
-        const writer: BytesWriter = new BytesWriter(BOOLEAN_BYTE_LENGTH);
-        writer.writeBoolean(true);
-
-        return writer;
+        return new BytesWriter(0);
     }
 }
