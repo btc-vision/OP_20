@@ -1,5 +1,5 @@
 import { Blockchain } from '@btc-vision/btc-runtime/runtime';
-import { MyToken } from './contracts/MyToken';
+import { MyToken } from './MyToken';
 import { revertOnError } from '@btc-vision/btc-runtime/runtime/abort/abort';
 
 // DO NOT TOUCH TO THIS.

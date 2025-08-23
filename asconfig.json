@@ -1,7 +1,16 @@
 {
     "targets": {
-        "release": {
-            "outFile": "build/MyToken.wasm"
+        "token": {
+            "outFile": "build/MyToken.wasm",
+            "use": [
+                "abort=src/token/index/abort"
+            ]
+        },
+        "nft": {
+            "outFile": "build/MyNFT.wasm",
+            "use": [
+                "abort=src/nft/index/abort"
+            ]
         }
     },
     "options": {
@@ -23,9 +32,6 @@
         "memoryBase": 0,
         "initialMemory": 1,
         "exportStart": "start",
-        "use": [
-            "abort=src/index/abort"
-        ],
         "transform": "@btc-vision/opnet-transform"
     }
 }
