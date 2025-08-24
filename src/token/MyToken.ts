@@ -8,7 +8,11 @@ import {
     OP20,
     OP20InitParameters,
     SafeMath,
+    SELECTOR_BYTE_LENGTH,
 } from '@btc-vision/btc-runtime/runtime';
+
+// onOP20Received(address,address,uint256,bytes)
+const ON_OP_20_RECEIVED_SELECTOR: u32 = 0xd83e7dbc;
 
 @final
 export class MyToken extends OP20 {
@@ -44,7 +48,9 @@ export class MyToken extends OP20 {
     @emit('Minted')
     public mint(calldata: Calldata): BytesWriter {
         this.onlyDeployer(Blockchain.tx.sender);
+
         this._mint(calldata.readAddress(), calldata.readU256());
+
         return new BytesWriter(0);
     }
 
@@ -86,5 +92,34 @@ export class MyToken extends OP20 {
         this._totalSupply.set(SafeMath.add(this._totalSupply.value, totalAirdropped));
 
         return new BytesWriter(0);
+    }
+
+    @method(
+        {
+            name: 'operator',
+            type: ABIDataTypes.ADDRESS,
+        },
+        {
+            name: 'from',
+            type: ABIDataTypes.ADDRESS,
+        },
+        {
+            name: 'amount',
+            type: ABIDataTypes.UINT256,
+        },
+        {
+            name: 'data',
+            type: ABIDataTypes.BYTES,
+        },
+    )
+    @returns({
+        name: 'selector',
+        type: ABIDataTypes.BYTES4,
+    })
+    public onOP20Received(_calldata: Calldata): BytesWriter {
+        const response = new BytesWriter(SELECTOR_BYTE_LENGTH);
+        response.writeSelector(ON_OP_20_RECEIVED_SELECTOR);
+
+        return response;
     }
 }
