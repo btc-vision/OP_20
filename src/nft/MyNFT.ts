@@ -388,6 +388,22 @@ export class MyNFT extends OP721 {
         return response;
     }
 
+    @method(
+        { name: 'tokenId', type: ABIDataTypes.UINT256 },
+        { name: 'uri', type: ABIDataTypes.STRING },
+    )
+    @emit('URI')
+    public setTokenURI(calldata: Calldata): BytesWriter {
+        this.onlyDeployer(Blockchain.tx.sender);
+
+        const tokenId: u256 = calldata.readU256();
+        const uri: string = calldata.readStringWithLength();
+
+        this._setTokenURI(tokenId, uri);
+
+        return new BytesWriter(0);
+    }
+
     private autoPurgeExpired(): PurgeResult {
         const cutoffBlock: u64 = SafeMath.sub64(
             Blockchain.block.number,
