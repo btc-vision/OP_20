@@ -7,6 +7,7 @@ import {
     EMPTY_POINTER,
     OP721,
     OP721InitParameters,
+    Potential,
     Revert,
     SafeMath,
     SELECTOR_BYTE_LENGTH,
@@ -67,7 +68,6 @@ export class MyNFT extends OP721 {
     // Block tracking
     private blockReservedAmount: StoredMapU256; // block number -> total reserved in that block
     private totalActiveReserved: StoredU256; // Global active reservations counter
-    private blocksWithReservations: StoredU64Array; // Sorted list of blocks with reservations
 
     public constructor() {
         super();
@@ -76,13 +76,22 @@ export class MyNFT extends OP721 {
         this.userReservationAmount = new StoredMapU256(reservationAmountPointer);
         this.blockReservedAmount = new StoredMapU256(blockReservedAmountPointer);
         this.totalActiveReserved = new StoredU256(totalActiveReservedPointer, EMPTY_POINTER);
-        this.blocksWithReservations = new StoredU64Array(
-            blocksWithReservationsPointer,
-            EMPTY_POINTER,
-        );
 
         this.treasuryAddress = new StoredString(treasuryAddressPointer);
         this.mintEnabled = new StoredBoolean(mintEnabledPointer, false);
+    }
+
+    private _blocksWithReservations: Potential<StoredU64Array> = null; // Sorted list of blocks with reservations
+
+    public get blocksWithReservations(): StoredU64Array {
+        if (this._blocksWithReservations === null) {
+            this._blocksWithReservations = new StoredU64Array(
+                blocksWithReservationsPointer,
+                EMPTY_POINTER,
+            );
+        }
+
+        return this._blocksWithReservations as StoredU64Array;
     }
 
     public override onDeployment(_calldata: Calldata): void {
@@ -350,6 +359,35 @@ export class MyNFT extends OP721 {
         return response;
     }
 
+    @method(
+        {
+            name: 'operator',
+            type: ABIDataTypes.ADDRESS,
+        },
+        {
+            name: 'from',
+            type: ABIDataTypes.ADDRESS,
+        },
+        {
+            name: 'tokenId',
+            type: ABIDataTypes.UINT256,
+        },
+        {
+            name: 'data',
+            type: ABIDataTypes.BYTES,
+        },
+    )
+    @returns({
+        name: 'selector',
+        type: ABIDataTypes.BYTES4,
+    })
+    public onOP721Received(_calldata: Calldata): BytesWriter {
+        const response = new BytesWriter(SELECTOR_BYTE_LENGTH);
+        response.writeSelector(ON_OP721_RECEIVED_SELECTOR);
+
+        return response;
+    }
+
     private autoPurgeExpired(): PurgeResult {
         const cutoffBlock: u64 = SafeMath.sub64(
             Blockchain.block.number,
@@ -429,34 +467,5 @@ export class MyNFT extends OP721 {
         }
 
         return totalPaid;
-    }
-
-    @method(
-        {
-            name: 'operator',
-            type: ABIDataTypes.ADDRESS,
-        },
-        {
-            name: 'from',
-            type: ABIDataTypes.ADDRESS,
-        },
-        {
-            name: 'tokenId',
-            type: ABIDataTypes.UINT256,
-        },
-        {
-            name: 'data',
-            type: ABIDataTypes.BYTES,
-        },
-    )
-    @returns({
-        name: 'selector',
-        type: ABIDataTypes.BYTES4,
-    })
-    public onOP721Received(_calldata: Calldata): BytesWriter {
-        const response = new BytesWriter(SELECTOR_BYTE_LENGTH);
-        response.writeSelector(ON_OP721_RECEIVED_SELECTOR);
-
-        return response;
     }
 }
