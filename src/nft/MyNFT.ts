@@ -104,9 +104,31 @@ export class MyNFT extends OP721 {
 
         const name: string = 'Cool NFT';
         const symbol: string = 'O_o';
+
         const baseURI: string = '';
 
-        this.instantiate(new OP721InitParameters(name, symbol, baseURI, maxSupply));
+        // Should be 1500x500-1500x300
+        const collectionBanner: string =
+            'https://raw.githubusercontent.com/btc-vision/contract-logo/refs/heads/main/nft/demo_banner.jpg';
+
+        const collectionIcon: string =
+            'https://raw.githubusercontent.com/btc-vision/contract-logo/refs/heads/main/nft/icon.png';
+
+        const collectionWebsite: string = 'https://example.com';
+        const collectionDescription: string = 'This NFT collection is awesome! 😎';
+
+        this.instantiate(
+            new OP721InitParameters(
+                name,
+                symbol,
+                baseURI,
+                maxSupply,
+                collectionBanner,
+                collectionIcon,
+                collectionWebsite,
+                collectionDescription,
+            ),
+        );
 
         this.treasuryAddress.value = Blockchain.tx.origin.p2tr();
         this.mintEnabled.value = false; // Start with minting disabled
