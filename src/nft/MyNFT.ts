@@ -166,6 +166,10 @@ export class MyNFT extends OP721 {
         type: ABIDataTypes.UINT256,
     })
     @emit('ReservationCreated')
+    @returns(
+        { name: 'remainingPayment', type: ABIDataTypes.UINT64 },
+        { name: 'reservationBlock', type: ABIDataTypes.UINT64 },
+    )
     public reserve(calldata: Calldata): BytesWriter {
         // Check if minting is enabled
         if (!this.mintEnabled.value) {
@@ -250,7 +254,7 @@ export class MyNFT extends OP721 {
         const remainingPayment: u64 = SafeMath.sub64(totalCost, reservationFee);
         const response: BytesWriter = new BytesWriter(8 + U256_BYTE_LENGTH);
         response.writeU64(remainingPayment);
-        response.writeU256(currentBlock);
+        response.writeU64(currentBlock.toU64());
 
         return response;
     }
