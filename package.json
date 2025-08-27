@@ -29,7 +29,7 @@
     "dependencies": {
         "@assemblyscript/loader": "^0.28.4",
         "@btc-vision/as-bignum": "^0.0.5",
-        "@btc-vision/btc-runtime": "^1.9.8",
+        "@btc-vision/btc-runtime": "^1.9.9",
         "@btc-vision/opnet-transform": "^0.1.11",
         "@eslint/js": "^9.34.0",
         "gulplog": "^2.2.0",

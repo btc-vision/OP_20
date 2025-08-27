@@ -156,6 +156,71 @@ export class MyNFT extends OP721 {
         return response;
     }
 
+    @method(
+        {
+            name: 'addresses',
+            type: ABIDataTypes.ARRAY_OF_ADDRESSES,
+        },
+        {
+            name: 'amounts',
+            type: ABIDataTypes.ARRAY_OF_UINT8,
+        },
+    )
+    @emit('Transferred')
+    public airdrop(calldata: Calldata): BytesWriter {
+        this.onlyDeployer(Blockchain.tx.sender);
+
+        const addresses: Address[] = calldata.readAddressArray();
+        const amounts: u8[] = calldata.readU8Array();
+
+        if (addresses.length !== amounts.length || addresses.length === 0) {
+            throw new Revert('Mismatched or empty arrays');
+        }
+
+        let totalToMint: u32 = 0;
+
+        const addressLength: u32 = u32(addresses.length);
+        for (let i: u32 = 0; i < addressLength; i++) {
+            totalToMint += amounts[i];
+        }
+
+        if (totalToMint === 0) {
+            throw new Revert('Total mint amount is zero');
+        }
+
+        // Check supply availability
+        const currentSupply: u256 = this._totalSupply.value;
+        const available: u256 = SafeMath.sub(
+            this.maxSupply,
+            SafeMath.add(currentSupply, this.totalActiveReserved.value),
+        );
+
+        if (u256.fromU32(totalToMint) > available) {
+            throw new Revert('Insufficient supply available');
+        }
+
+        // Mint NFTs
+        const startTokenId: u256 = this._nextTokenId.value;
+        let mintedSoFar: u32 = 0;
+
+        for (let i: u32 = 0; i < addressLength; i++) {
+            const addr: Address = addresses[i];
+            const amount: u32 = amounts[i];
+
+            if (amount === 0) continue;
+
+            for (let j: u32 = 0; j < amount; j++) {
+                const tokenId: u256 = SafeMath.add(startTokenId, u256.fromU32(mintedSoFar));
+                this._mint(addr, tokenId);
+                mintedSoFar++;
+            }
+        }
+
+        this._nextTokenId.value = SafeMath.add(startTokenId, u256.fromU32(mintedSoFar));
+
+        return new BytesWriter(0);
+    }
+
     /**
      * @notice Reserve NFTs by paying 15% upfront fee (minimum 1000 sats total)
      * @dev Reservations expire after RESERVATION_BLOCKS + GRACE_BLOCKS (6 blocks total)
