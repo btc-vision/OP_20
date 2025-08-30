@@ -11,7 +11,7 @@
     "license": "MIT",
     "devDependencies": {
         "@types/node": "^24.3.0",
-        "assemblyscript": "^0.28.4",
+        "assemblyscript": "^0.28.5",
         "prettier": "^3.6.2"
     },
     "keywords": [
@@ -27,7 +27,7 @@
     "homepage": "https://opnet.org",
     "type": "module",
     "dependencies": {
-        "@assemblyscript/loader": "^0.28.4",
+        "@assemblyscript/loader": "^0.28.5",
         "@btc-vision/as-bignum": "^0.0.5",
         "@btc-vision/btc-runtime": "^1.9.10",
         "@btc-vision/opnet-transform": "^0.1.12",
