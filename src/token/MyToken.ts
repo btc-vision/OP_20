@@ -11,9 +11,6 @@ import {
     SELECTOR_BYTE_LENGTH,
 } from '@btc-vision/btc-runtime/runtime';
 
-// onOP20Received(address,address,uint256,bytes)
-const ON_OP_20_RECEIVED_SELECTOR: u32 = 0xd83e7dbc;
-
 @final
 export class MyToken extends OP20 {
     public constructor() {
@@ -118,7 +115,7 @@ export class MyToken extends OP20 {
     })
     public onOP20Received(_calldata: Calldata): BytesWriter {
         const response = new BytesWriter(SELECTOR_BYTE_LENGTH);
-        response.writeSelector(ON_OP_20_RECEIVED_SELECTOR);
+        response.writeSelector(ON_OP20_RECEIVED_SELECTOR);
 
         return response;
     }
