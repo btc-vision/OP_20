@@ -5,6 +5,7 @@ import {
     Blockchain,
     BytesWriter,
     Calldata,
+    ON_OP20_RECEIVED_SELECTOR,
     OP20,
     OP20InitParameters,
     SafeMath,
